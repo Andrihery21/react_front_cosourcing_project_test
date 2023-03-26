@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component }  from "react";
 import { variables } from "./Variables.js";
 
 export class Employee extends Component{
@@ -17,7 +17,10 @@ export class Employee extends Component{
             poste:"",
             salaire:"",
             dateEmbauche:"",
-            avantage: ""
+            avantage: "",
+           
+
+           
         }
     }
     
@@ -161,6 +164,46 @@ export class Employee extends Component{
       }
     }
 
+    myFunction() {
+      var src, input, filter, table, tr, td,td2,td3,td4,td5,td6,td7, i,j, txtValue, txtValue2,txtValue3,txtValue4,txtValue5,txtValue6,txtValue7;
+      input = document.getElementById("myInput");
+      filter = input.value.toUpperCase().trim().split(' ');
+      table = document.getElementById("myTable");
+      for (j = 0; j < filter.length; j++) {
+        tr = table.getElementsByTagName("tr");
+        src = filter[j].trim();
+        for (i = 0; i < tr.length; i++) {
+          td = tr[i].getElementsByTagName("td")[1];
+          td2 = tr[i].getElementsByTagName("td")[2];
+          td3 = tr[i].getElementsByTagName("td")[3];
+          td4 = tr[i].getElementsByTagName("td")[4];
+          td5 = tr[i].getElementsByTagName("td")[5];
+          td6 = tr[i].getElementsByTagName("td")[6];
+          td7 = tr[i].getElementsByTagName("td")[7];
+          if (src!=='' && td && td2 &&td3&& td4 && td5 &&td6 &&td7) {
+            txtValue = td.textContent || td.innerText;
+            txtValue2 = td2.textContent || td2.innerText;
+            txtValue3 = td3.textContent || td3.innerText;
+            txtValue4 = td4.textContent || td4.innerText;
+            txtValue5 = td5.textContent || td5.innerText;
+            txtValue6 = td6.textContent || td6.innerText;
+            txtValue7 = td6.textContent || td7.innerText;
+
+            if (txtValue.toUpperCase().indexOf(src) > -1 || txtValue2.toUpperCase().indexOf(src) > -1 
+            || txtValue3.toUpperCase().indexOf(src) > -1 ||txtValue4.toUpperCase().indexOf(src) > -1
+            ||txtValue5.toUpperCase().indexOf(src) > -1||txtValue6.toUpperCase().indexOf(src) > -1||txtValue7.toUpperCase().indexOf(src) > -1) {
+              tr[i].style.display = "";
+            } else {
+              tr[i].style.display = "none";
+            }
+          }       
+        }
+      }
+}
+    
+   
+  
+
     
     render(){
              
@@ -174,13 +217,24 @@ export class Employee extends Component{
             poste,
             salaire,
             dateEmbauche,
-            avantage
+            avantage,
+           
+          
             
         }=this.state;
 
+    
+      
+  
+         
         return(
-            <div>
-               <button
+              <div>
+              <div>
+             
+
+              <input type="text" className="form-control" id="myInput" onKeyUp={() => this.myFunction()} placeholder="Search for names.."/>
+
+              <button
           type="button"
           className="btn btn-primary m-2 float-end"
           data-bs-toggle="modal"
@@ -189,8 +243,9 @@ export class Employee extends Component{
         >
           Ajouter un employé
         </button>
+        </div>
 
-                   <table className="table table-hover table-striped">
+                   <table className="table table-hover table-striped" id="myTable">
           <thead>
             <tr>
               <th>Identifiant</th>
@@ -206,7 +261,9 @@ export class Employee extends Component{
             </tr>
           </thead>
           <tbody>
-            {employees.map((emp) => (
+            {employees 
+            
+             .map((emp) => (
               <tr key={emp.employeeId}>
                 <td>EMP{emp.employeeId}</td>
                 <td>{emp.nom}</td>
@@ -380,8 +437,12 @@ export class Employee extends Component{
             </div>
           </div>
         </div> 
+        
+
+
             </div>
             </div>
+            
         )
     }
   

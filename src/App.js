@@ -1,7 +1,7 @@
 //import logo from "./logo.svg";
 import "./App.css";
 import { Home } from "./Home";
-import { Employee } from "./Employee";
+import { Employee } from "./Employee.js";
 import {
   BrowserRouter,
   Routes,
