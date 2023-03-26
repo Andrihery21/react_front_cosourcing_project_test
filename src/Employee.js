@@ -84,6 +84,11 @@ export class Employee extends Component{
     }
   
     createClick() {
+      if (this.state.avantage.length===0||this.state.nom.length===0||this.state.prenom.length===0
+        ||this.state.poste.length===0||this.state.salaire.length===0||this.state.dateEmbauche.length===0||this.state.email.length===0) {
+        alert('Il y a une ou plusieurs informations manquantes,veuillez completer la totalité du formulaire')
+        return
+      }
       fetch(variables.API_URL + "employee", {
         method: "POST",
         headers: {
@@ -103,10 +108,12 @@ export class Employee extends Component{
         .then((res) => res.json())
         .then(
           (result) => {
+            console.log('1');
             alert(result);
             this.refreshList();
           },
           (error) => {
+            console.log(2);
             alert("Failed");
           }
         );
@@ -187,7 +194,7 @@ export class Employee extends Component{
             txtValue4 = td4.textContent || td4.innerText;
             txtValue5 = td5.textContent || td5.innerText;
             txtValue6 = td6.textContent || td6.innerText;
-            txtValue7 = td6.textContent || td7.innerText;
+            txtValue7 = td7.textContent || td7.innerText;
 
             if (txtValue.toUpperCase().indexOf(src) > -1 || txtValue2.toUpperCase().indexOf(src) > -1 
             || txtValue3.toUpperCase().indexOf(src) > -1 ||txtValue4.toUpperCase().indexOf(src) > -1
@@ -232,7 +239,7 @@ export class Employee extends Component{
               <div>
              
 
-              <input type="text" className="form-control" id="myInput" onKeyUp={() => this.myFunction()} placeholder="Search for names.."/>
+              <input type="text" className="form-control" id="myInput" onKeyUp={() => this.myFunction()} placeholder="Entrer les information pour rechercher.."/>
 
               <button
           type="button"
@@ -346,6 +353,7 @@ export class Employee extends Component{
                       <span className="input-group-text">Nom</span>
                       <input
                         type="text"
+                        required="true"
                         className="form-control"
                         value={nom}
                         onChange={this.changeNom}
@@ -357,6 +365,7 @@ export class Employee extends Component{
                       <span className="input-group-text">Prénom</span>
                       <input
                         type="text"
+                        required="true"
                         className="form-control"
                         value={prenom}
                         onChange={this.changePrenom}
@@ -366,6 +375,7 @@ export class Employee extends Component{
                       <span className="input-group-text">Email</span>
                       <input
                         type="text"
+                        required="true"
                         className="form-control"
                         value={email}
                         onChange={this.changeEmail}
@@ -374,17 +384,25 @@ export class Employee extends Component{
                   
                     <div className="input-group mb-3">
                       <span className="input-group-text">Poste</span>
-                      <input
-                        type="text"
-                        className="form-control"
+                      <select
+                        className="form-select"
+                        required="true"
                         value={poste}
-                        onChange={this.changePoste}
-                      />
+                        onChange={this.changePoste}>
+                          <option>Directeur</option>
+                          <option>Responsable financier</option>
+                          <option>DRH</option>
+                          <option>RH</option>
+                          <option>Developpeur</option>
+                          <option>Medecin</option>
+                          <option>Gardien</option>
+                        </select>
                     </div>
                     <div className="input-group mb-3">
                       <span className="input-group-text">Salaire</span>
                       <input
                         type="text"
+                        required="true"
                         className="form-control"
                         value={salaire}
                         onChange={this.changeSalaire}
@@ -396,6 +414,7 @@ export class Employee extends Component{
                       <span className="input-group-text">Date d'embauche</span>
                       <input
                         type="date"
+                        required="true"
                         className="form-control"
                         value={dateEmbauche}
                         onChange={this.changeDateEmbauche}
@@ -404,12 +423,19 @@ export class Employee extends Component{
                   
                     <div className="input-group mb-3">
                       <span className="input-group-text">Avantage</span>
-                      <input
-                        type="text"
-                        className="form-control"
+                      <select
+                        className="form-select"
+                        required="true"
                         value={avantage}
                         onChange={this.changeAvantage}
-                      />
+                      >
+                        <option>Indemnité de deplacement</option>
+                        <option>Cantine</option>
+                        <option>CNaPS</option>
+                        <option>Ostie</option>
+                        <option>Transport</option>
+                        <option>Assurance</option>
+                      </select>
                     </div> 
                   
                 </div>
