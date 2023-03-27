@@ -236,20 +236,24 @@ export class Employee extends Component{
          
         return(
               <div>
-              <div>
+              <div className="d-flex p-2">
              
-
-              <input type="text" className="form-control" id="myInput" onKeyUp={() => this.myFunction()} placeholder="Entrer les information pour rechercher.."/>
-
+              <div className="col-sm-8">
+              <input type="text" className="form-control col-sm-9" id="myInput"  onKeyUp={() => this.myFunction()} placeholder="Entrer les information pour rechercher.."/>
+              </div>
+             <div className="col-sm-6">
               <button
           type="button"
-          className="btn btn-primary m-2 float-end"
+          className="btn btn-warning"
           data-bs-toggle="modal"
           data-bs-target="#exampleModal"
           onClick={() => this.addClick()}
         >
-          Ajouter un employé
+      <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
+  <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"/>
+</svg> Ajouter un employé
         </button>
+        </div>
         </div>
 
                    <table className="table table-hover table-striped" id="myTable">
@@ -343,9 +347,9 @@ export class Employee extends Component{
                 ></button>
               </div>
               <div className="modal-body">
-                <div className="d-flex flex-row bd-highlight mb-3">
+                <div >
      
-                        <div className="p-2 w-50 bd-highlight">
+                        <div>
 
              
                
